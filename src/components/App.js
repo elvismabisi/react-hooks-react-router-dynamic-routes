@@ -1,26 +1,20 @@
 import React, { useState } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Routes, Router } from "react-router-dom";
 import NavBar from "./NavBar";
 import MoviesPage from "./MoviesPage";
 
 function App() {
-  const [movies, setMovies] = useState({
-    1: { id: 1, title: "A River Runs Through It" },
-    2: { id: 2, title: "Se7en" },
-    3: { id: 3, title: "Inception" },
-  });
-
+  const [movies, setMovies] = useState({movies});
+   
   return (
     <div>
       <NavBar />
-      <Switch>
-        <Route path="/movies">
+      <Routes>
+      <Route path="/movies" element={<MoviesPage data={data} setState={setState} />}>
           <MoviesPage movies={movies} />
+          <Route path="/" element={<div>Home</div>}>
         </Route>
-        <Route exact path="/">
-          <div>Home</div>
-        </Route>
-      </Switch>
+        </Routes>
     </div>
   );
 }
